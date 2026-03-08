@@ -9,24 +9,32 @@ app.use(express.json());
 app.use(express.static("public"));
 
 /* ===============================
-   KẾT NỐI DATABASE
+   KẾT NỐI DATABASE (POOL)
 ================================ */
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: process.env.MYSQLHOST || "localhost",
   user: process.env.MYSQLUSER || "root",
   password: process.env.MYSQLPASSWORD || "",
   database: process.env.MYSQLDATABASE || "qlhs",
-  port: process.env.MYSQLPORT || 3306
+  port: process.env.MYSQLPORT || 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-db.connect(err => {
+db.getConnection((err, connection) => {
   if (err) {
     console.error("Lỗi kết nối MySQL:", err);
   } else {
     console.log("Đã kết nối MySQL");
+    connection.release();
   }
 });
+
+/* ===============================
+   TẠO BẢNG NẾU CHƯA CÓ
+================================ */
 
 db.query(`
 CREATE TABLE IF NOT EXISTS students (
@@ -48,7 +56,6 @@ CREATE TABLE IF NOT EXISTS students (
   }
 });
 
-
 /* ===============================
    GET ALL STUDENTS
 ================================ */
@@ -64,7 +71,6 @@ app.get("/students", (req, res) => {
     res.json(result);
   });
 });
-
 
 /* ===============================
    GET 1 STUDENT
@@ -89,7 +95,6 @@ app.get("/students/:ma", (req, res) => {
     }
   );
 });
-
 
 /* ===============================
    ADD STUDENT
@@ -165,7 +170,6 @@ app.post("/students", (req, res) => {
   );
 });
 
-
 /* ===============================
    UPDATE STUDENT
 ================================ */
@@ -231,7 +235,6 @@ app.put("/students/:ma", (req, res) => {
   );
 });
 
-
 /* ===============================
    DELETE STUDENT
 ================================ */
@@ -255,7 +258,6 @@ app.delete("/students/:ma", (req, res) => {
     }
   );
 });
-
 
 /* ===============================
    SEARCH
@@ -287,7 +289,6 @@ app.get("/search", (req, res) => {
     }
   );
 });
-
 
 /* ===============================
    START SERVER
