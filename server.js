@@ -77,7 +77,14 @@ app.get("/students", (req, res) => {
       const orderDir = order === 'DESC' ? 'DESC' : 'ASC';
       
       // Áp dụng hướng sắp xếp cho tất cả các cột được chọn
-      const orderClause = sortFields.map(field => `${field} ${orderDir}`).join(', ');
+      // Tìm đoạn code xử lý orderClause trong app.get("/students") và thay bằng:
+      const orderClause = sortFields.map(field => {
+        if (field === 'ho_ten') {
+          // Tách tên (chữ cuối cùng), sau đó đến cả chuỗi ho_ten để xử lý tên đệm và họ
+          return `SUBSTRING_INDEX(ho_ten, ' ', -1) ${orderDir}, ho_ten ${orderDir}`;
+        }
+        return `${field} ${orderDir}`;
+      }).join(', ');
       
       sql += ` ORDER BY ${orderClause}`;
     }

@@ -75,8 +75,11 @@ function render() {
   const pageData = students.slice(start, end)
 
   pageData.forEach(s => {
-    // Chuyển đổi ngày sinh sang định dạng yyyy-mm-dd
-    const formatDate = s.ngay_sinh ? s.ngay_sinh.split('T')[0] : "";
+    let formatDate = "";
+    if (s.ngay_sinh) {
+      const dateParts = s.ngay_sinh.split('T')[0].split('-'); // [2024, 06, 27]
+      formatDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // 27-06-2024
+    }
 
     list.innerHTML += `
       <tr class="border-t text-center text-sm">
