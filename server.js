@@ -12,11 +12,12 @@ app.use(express.static("public"));
    KẾT NỐI DATABASE (POOL)
 ================================ */
 
-const db = mysql.createPool({
-  host: process.env.MYSQLHOST || "localhost",
+// Trên Railway, dùng MYSQL_URL là ổn định nhất, nếu không có sẽ dùng các biến rời
+const db = mysql.createPool(process.env.MYSQL_URL || {
+  host: process.env.MYSQLHOST || "mysql.railway.internal",
   user: process.env.MYSQLUSER || "root",
-  password: process.env.MYSQLPASSWORD || "",
-  database: process.env.MYSQLDATABASE || "qlhs",
+  password: process.env.MYSQLPASSWORD || "KIOiGukHYmqyOPcUezFMZbikOBTBOZji",
+  database: process.env.MYSQLDATABASE || "railway",
   port: process.env.MYSQLPORT || 3306,
   waitForConnections: true,
   connectionLimit: 10,
@@ -25,9 +26,11 @@ const db = mysql.createPool({
 
 db.getConnection((err, connection) => {
   if (err) {
-    console.error("Lỗi kết nối MySQL:", err);
+    console.error("Lỗi kết nối MySQL:", err.message);
+    // In ra thông tin host đang cố kết nối để dễ debug trên Railway
+    console.error(`Đang cố kết nối tới Host: ${process.env.MYSQLHOST || 'localhost'}`);
   } else {
-    console.log("Đã kết nối MySQL");
+    console.log("✅ Đã kết nối MySQL thành công!");
     connection.release();
   }
 });
