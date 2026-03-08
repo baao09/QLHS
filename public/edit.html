@@ -46,7 +46,7 @@ async function loadStudent(){
 
   document.getElementById("ma").value = s.ma_hoc_sinh;
   document.getElementById("ten").value = s.ho_ten;
-  document.getElementById("ns").value = s.ngay_sinh;
+  document.getElementById("ns").value = s.ngay_sinh ? s.ngay_sinh.split('T')[0] : "";
   document.getElementById("gt").value = s.gioi_tinh;
   document.getElementById("lop").value = s.lop;
   document.getElementById("email").value = s.email;

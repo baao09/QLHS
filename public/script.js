@@ -21,12 +21,14 @@ function render() {
   const pageData = students.slice(start, end)
 
   pageData.forEach(s => {
+    // Chuyển đổi ngày sinh sang định dạng yyyy-mm-dd
+    const formatDate = s.ngay_sinh ? s.ngay_sinh.split('T')[0] : "";
+
     list.innerHTML += `
       <tr class="border-t text-center text-sm">
         <td>${s.ma_hoc_sinh}</td>
         <td>${s.ho_ten}</td>
-        <td>${s.ngay_sinh}</td>
-        <td>${s.gioi_tinh}</td>
+        <td>${formatDate}</td> <td>${s.gioi_tinh}</td>
         <td>${s.lop}</td>
         <td>${s.email}</td>
         <td>${s.so_dien_thoai}</td>
