@@ -1,0 +1,233 @@
+[
+  {
+    "ma_hoc_sinh": "HS001",
+    "ho_ten": "Thái Nguyễn Ngọc Bảo",
+    "ngay_sinh": "2008-04-12",
+    "gioi_tinh": "Nam",
+    "lop": "11CTin",
+    "email": "bao@gmail.com",
+    "so_dien_thoai": "0987654321",
+    "nien_khoa": "2024-2027",
+    "ghi_chu": "học sinh bị gay"
+  },
+  {
+    "ma_hoc_sinh": "HS002",
+    "ho_ten": "Trần Nguyễn Khánh Hân",
+    "ngay_sinh": "2009-03-07",
+    "gioi_tinh": "Nữ",
+    "lop": "11CTin",
+    "email": "han@gmail.com",
+    "so_dien_thoai": "0000000000",
+    "nien_khoa": "2024-2027",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS003",
+    "ho_ten": "Nguyễn Minh Anh",
+    "ngay_sinh": "2008-01-15",
+    "gioi_tinh": "Nữ",
+    "lop": "10CV",
+    "email": "minhanh03@gmail.com",
+    "so_dien_thoai": "0912345601",
+    "nien_khoa": "2024-2027",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS004",
+    "ho_ten": "Lê Hoàng Nam",
+    "ngay_sinh": "2007-09-22",
+    "gioi_tinh": "Nam",
+    "lop": "11CT",
+    "email": "hoangnam04@gmail.com",
+    "so_dien_thoai": "0912345602",
+    "nien_khoa": "2023-2026",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS005",
+    "ho_ten": "Phạm Gia Huy",
+    "ngay_sinh": "2006-12-03",
+    "gioi_tinh": "Nam",
+    "lop": "12CSinh",
+    "email": "giahuy05@gmail.com",
+    "so_dien_thoai": "0912345603",
+    "nien_khoa": "2022-2025",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS006",
+    "ho_ten": "Trần Bảo Ngọc",
+    "ngay_sinh": "2008-06-18",
+    "gioi_tinh": "Nữ",
+    "lop": "10CT",
+    "email": "baongoc06@gmail.com",
+    "so_dien_thoai": "0912345604",
+    "nien_khoa": "2024-2027",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS007",
+    "ho_ten": "Đặng Quang Hưng",
+    "ngay_sinh": "2007-02-10",
+    "gioi_tinh": "Nam",
+    "lop": "11CV",
+    "email": "quanghung07@gmail.com",
+    "so_dien_thoai": "0912345605",
+    "nien_khoa": "2023-2026",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS008",
+    "ho_ten": "Ngô Thanh Vy",
+    "ngay_sinh": "2006-05-25",
+    "gioi_tinh": "Nữ",
+    "lop": "12CT",
+    "email": "thanhvy08@gmail.com",
+    "so_dien_thoai": "0912345606",
+    "nien_khoa": "2022-2025",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS009",
+    "ho_ten": "Phan Đức Trí",
+    "ngay_sinh": "2008-11-09",
+    "gioi_tinh": "Nam",
+    "lop": "10CV",
+    "email": "ductri09@gmail.com",
+    "so_dien_thoai": "0912345607",
+    "nien_khoa": "2024-2027",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS010",
+    "ho_ten": "Võ Kim Chi",
+    "ngay_sinh": "2007-07-14",
+    "gioi_tinh": "Nữ",
+    "lop": "11CT",
+    "email": "kimchi10@gmail.com",
+    "so_dien_thoai": "0912345608",
+    "nien_khoa": "2023-2026",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS011",
+    "ho_ten": "Bùi Nhật Minh",
+    "ngay_sinh": "2006-03-30",
+    "gioi_tinh": "Nam",
+    "lop": "12CSinh",
+    "email": "nhatminh11@gmail.com",
+    "so_dien_thoai": "0912345609",
+    "nien_khoa": "2022-2025",
+    "ghi_chu": "1"
+  },
+  {
+    "ma_hoc_sinh": "HS012",
+    "ho_ten": "Hoàng Yến Nhi",
+    "ngay_sinh": "2008-08-19",
+    "gioi_tinh": "Nữ",
+    "lop": "10CT",
+    "email": "yennhi12@gmail.com",
+    "so_dien_thoai": "0912345610",
+    "nien_khoa": "2024-2027",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS013",
+    "ho_ten": "Lý Quốc Bảo",
+    "ngay_sinh": "2007-10-05",
+    "gioi_tinh": "Nam",
+    "lop": "11CV",
+    "email": "quocbao13@gmail.com",
+    "so_dien_thoai": "0912345611",
+    "nien_khoa": "2023-2026",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS014",
+    "ho_ten": "Tạ Minh Thư",
+    "ngay_sinh": "2006-01-27",
+    "gioi_tinh": "Nữ",
+    "lop": "12CT",
+    "email": "minhthu14@gmail.com",
+    "so_dien_thoai": "0912345612",
+    "nien_khoa": "2022-2025",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS015",
+    "ho_ten": "Nguyễn Hải Đăng",
+    "ngay_sinh": "2008-04-02",
+    "gioi_tinh": "Nam",
+    "lop": "10CV",
+    "email": "haidang15@gmail.com",
+    "so_dien_thoai": "0912345613",
+    "nien_khoa": "2024-2027",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS016",
+    "ho_ten": "Trịnh Ngọc Hân",
+    "ngay_sinh": "2007-06-12",
+    "gioi_tinh": "Nữ",
+    "lop": "11CT",
+    "email": "ngochan16@gmail.com",
+    "so_dien_thoai": "0912345614",
+    "nien_khoa": "2023-2026",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS017",
+    "ho_ten": "Phạm Tuấn Kiệt",
+    "ngay_sinh": "2006-09-21",
+    "gioi_tinh": "Nam",
+    "lop": "12CSinh",
+    "email": "tuankiet17@gmail.com",
+    "so_dien_thoai": "0912345615",
+    "nien_khoa": "2022-2025",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS018",
+    "ho_ten": "Đỗ Thanh Mai",
+    "ngay_sinh": "2008-02-11",
+    "gioi_tinh": "Nữ",
+    "lop": "10CT",
+    "email": "thanhmai18@gmail.com",
+    "so_dien_thoai": "0912345616",
+    "nien_khoa": "2024-2027",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS019",
+    "ho_ten": "Nguyễn Quốc Thái",
+    "ngay_sinh": "2007-11-08",
+    "gioi_tinh": "Nam",
+    "lop": "11CV",
+    "email": "quocthai19@gmail.com",
+    "so_dien_thoai": "0912345617",
+    "nien_khoa": "2023-2026",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS020",
+    "ho_ten": "Lê Thu Hà",
+    "ngay_sinh": "2006-05-16",
+    "gioi_tinh": "Nữ",
+    "lop": "12CT",
+    "email": "thuha20@gmail.com",
+    "so_dien_thoai": "0912345618",
+    "nien_khoa": "2022-2025",
+    "ghi_chu": ""
+  },
+  {
+    "ma_hoc_sinh": "HS021",
+    "ho_ten": "Trần Đức Anh",
+    "ngay_sinh": "2008-03-09",
+    "gioi_tinh": "Nam",
+    "lop": "10CV",
+    "email": "ducanh21@gmail.com",
+    "so_dien_thoai": "0912345619",
+    "nien_khoa": "2024-2027",
+    "ghi_chu": ""
+  }
+]

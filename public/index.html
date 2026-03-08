@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Danh sách học sinh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+
+<div class="max-w-7xl mx-auto bg-white p-6 rounded-xl shadow-lg">
+
+<div class="flex justify-between mb-4">
+  <h1 class="text-2xl font-bold">Danh sách học sinh</h1>
+  <div class="space-x-3">
+    <a href="/add.html" class="bg-blue-500 text-white px-4 py-2 rounded">Thêm</a>
+    <a href="/search.html" class="bg-green-500 text-white px-4 py-2 rounded">Tìm kiếm</a>
+  </div>
+</div>
+
+<div class="overflow-x-auto">
+<table class="w-full border text-sm">
+<thead class="bg-gray-200">
+<tr>
+<th>Mã</th>
+<th>Họ tên</th>
+<th>Ngày sinh</th>
+<th>Giới tính</th>
+<th>Lớp</th>
+<th>Email</th>
+<th>SĐT</th>
+<th>Niên khóa</th>
+<th>Ghi chú</th>
+<th>Hành động</th>
+</tr>
+</thead>
+<tbody id="list"></tbody>
+
+</table>
+<div class="flex justify-center mt-4 space-x-4">
+  <button id="prevBtn" class="px-4 py-2 bg-gray-300 rounded">
+    « Trước
+  </button>
+
+  <span id="pageInfo" class="font-semibold"></span>
+
+  <button id="nextBtn" class="px-4 py-2 bg-gray-300 rounded">
+    Sau »
+  </button>
+</div>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+</script>
+
+</body>
+</html>

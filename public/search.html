@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tìm kiếm</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+
+<div class="max-w-6xl mx-auto bg-white p-6 rounded-xl shadow-lg">
+
+<h1 class="text-2xl font-bold mb-4">Tìm kiếm học sinh</h1>
+
+<input id="keyword"
+placeholder="Nhập mã, tên, lớp hoặc email..."
+oninput="searchStudent()"
+class="border p-2 rounded w-full mb-4">
+
+<div class="overflow-x-auto">
+<table class="w-full border text-sm">
+<thead class="bg-gray-200">
+<tr>
+<th>Mã</th>
+<th>Họ tên</th>
+<th>Ngày sinh</th>
+<th>Giới tính</th>
+<th>Lớp</th>
+<th>Email</th>
+<th>SĐT</th>
+<th>Niên khóa</th>
+<th>Ghi chú</th>
+<th>Hành động</th>
+</tr>
+</thead>
+<tbody id="list"></tbody>
+</table>
+</div>
+
+<a href="/" class="text-gray-600 mt-4 inline-block">
+  Quay lại
+</a>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

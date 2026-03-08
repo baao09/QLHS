@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sửa học sinh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+
+<div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-lg">
+
+<h1 class="text-2xl font-bold mb-4">Sửa học sinh</h1>
+
+<div class="grid grid-cols-2 gap-4">
+  <input id="ma" disabled class="border p-2 rounded bg-gray-200">
+  <input id="ten" class="border p-2 rounded">
+  <input id="ns" type="date" class="border p-2 rounded">
+
+  <select id="gt" class="border p-2 rounded">
+    <option value="Nam">Nam</option>
+    <option value="Nữ">Nữ</option>
+  </select>
+
+  <input id="lop" class="border p-2 rounded">
+  <input id="email" class="border p-2 rounded">
+  <input id="sdt" class="border p-2 rounded">
+  <input id="nk" class="border p-2 rounded">
+  <input id="gc" class="border p-2 rounded col-span-2">
+</div>
+
+<button onclick="updateStudent()"
+class="bg-green-500 text-white px-4 py-2 rounded mt-4">
+Cập nhật
+</button>
+
+<a href="/" class="ml-4 text-gray-600">Quay lại</a>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const ma = params.get("ma");
+
+async function loadStudent(){
+  const res = await fetch("/students/"+ma);
+  const s = await res.json();
+
+  document.getElementById("ma").value = s.ma_hoc_sinh;
+  document.getElementById("ten").value = s.ho_ten;
+  document.getElementById("ns").value = s.ngay_sinh;
+  document.getElementById("gt").value = s.gioi_tinh;
+  document.getElementById("lop").value = s.lop;
+  document.getElementById("email").value = s.email;
+  document.getElementById("sdt").value = s.so_dien_thoai;
+  document.getElementById("nk").value = s.nien_khoa;
+  document.getElementById("gc").value = s.ghi_chu;
+}
+
+async function updateStudent(){
+  const student = {
+    ho_ten: ten.value.trim(),
+    ngay_sinh: ns.value,
+    gioi_tinh: gt.value,
+    lop: lop.value.trim(),
+    email: email.value.trim(),
+    so_dien_thoai: sdt.value.trim(),
+    nien_khoa: nk.value.trim(),
+    ghi_chu: gc.value.trim()
+  };
+
+  const res = await fetch("/students/"+ma,{
+    method:"PUT",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify(student)
+  });
+
+  const data = await res.json();
+
+  if(!res.ok){
+    alert(data.message);
+    return;
+  }
+
+  alert("Cập nhật thành công!");
+  window.location.href="/";
+}
+
+loadStudent();
+</script>
+
+</body>
+</html>
