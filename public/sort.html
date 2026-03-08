@@ -1,0 +1,41 @@
+<div id="sortDropdown" class="hidden absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl z-50 transition-all duration-300" onclick="event.stopPropagation()">
+  
+  <div class="p-4 border-b border-gray-100">
+    <h3 class="font-bold text-gray-700 mb-3">Điều kiện ưu tiên</h3>
+    <div class="space-y-2 text-sm text-gray-600">
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" value="ma_hoc_sinh" class="sort-condition mr-2 w-4 h-4 text-blue-500"> Mã
+      </label>
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" value="ho_ten" class="sort-condition mr-2 w-4 h-4 text-blue-500"> Họ tên
+      </label>
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" value="ngay_sinh" class="sort-condition mr-2 w-4 h-4 text-blue-500"> Ngày sinh
+      </label>
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" value="gioi_tinh" class="sort-condition mr-2 w-4 h-4 text-blue-500"> Giới tính
+      </label>
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" value="lop" class="sort-condition mr-2 w-4 h-4 text-blue-500"> Lớp
+      </label>
+    </div>
+  </div>
+
+  <div class="p-4 border-b border-gray-100">
+    <h3 class="font-bold text-gray-700 mb-3">Cách thức</h3>
+    <div class="space-y-2 text-sm text-gray-600">
+      <label class="flex items-center cursor-pointer">
+        <input type="radio" name="sortOrder" value="ASC" checked class="mr-2 w-4 h-4 text-blue-500"> A-Z (Tăng dần)
+      </label>
+      <label class="flex items-center cursor-pointer">
+        <input type="radio" name="sortOrder" value="DESC" class="mr-2 w-4 h-4 text-blue-500"> Z-A (Giảm dần)
+      </label>
+    </div>
+  </div>
+
+  <div class="p-4 flex justify-end">
+    <button onclick="applySort()" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-2 rounded shadow">
+      Lưu
+    </button>
+  </div>
+</div>

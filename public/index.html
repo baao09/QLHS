@@ -10,9 +10,16 @@
 
 <div class="flex justify-between mb-4">
   <h1 class="text-2xl font-bold">Danh sách học sinh</h1>
-  <div class="space-x-3">
-    <a href="/add.html" class="bg-blue-500 text-white px-4 py-2 rounded">Thêm</a>
-    <a href="/search.html" class="bg-green-500 text-white px-4 py-2 rounded">Tìm kiếm</a>
+  <div class="flex items-center space-x-3"> 
+    
+    <div class="relative" id="sortComponent">
+      <button onclick="toggleSort(event)" class="bg-orange-200 hover:bg-orange-300 text-gray-800 px-4 py-2 rounded font-medium transition">
+        Sắp xếp
+      </button>
+      </div>
+
+    <a href="/add.html" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Thêm</a>
+    <a href="/search.html" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">Tìm kiếm</a>
   </div>
 </div>
 

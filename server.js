@@ -292,7 +292,36 @@ app.get("/search", (req, res) => {
     }
   );
 });
+/* ===============================
+   GET ALL STUDENTS (Hỗ trợ Sắp xếp)
+================================ */
+app.get("/students", (req, res) => {
+  let sql = "SELECT * FROM students";
+  
+  const { sort, order } = req.query;
 
+  if (sort) {
+    // Lọc kỹ các cột hợp lệ để chống SQL Injection
+    const allowedSorts = ["ma_hoc_sinh", "ho_ten", "ngay_sinh", "gioi_tinh", "lop"];
+    const sortFields = sort.split(',').filter(f => allowedSorts.includes(f));
+
+    if (sortFields.length > 0) {
+      // Đảm bảo Order chỉ có thể là ASC hoặc DESC
+      const orderDir = order === 'DESC' ? 'DESC' : 'ASC';
+      
+      // SQL sẽ tự ưu tiên theo thứ tự trường được join. VD: ORDER BY ma_hoc_sinh ASC, ho_ten ASC
+      sql += ` ORDER BY ${sortFields.join(', ')} ${orderDir}`;
+    }
+  }
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Lỗi server khi lấy danh sách học sinh!" });
+    }
+    res.json(result);
+  });
+});
 /* ===============================
    START SERVER
 ================================ */

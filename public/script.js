@@ -4,6 +4,76 @@ let students = []
 let currentPage = 1
 const perPage = 10
 
+// --- LOGIC SẮP XẾP ---
+let currentSortParams = "";
+
+// Nạp file sort.html vào index.html
+async function loadSortComponent() {
+  const sortContainer = document.getElementById('sortComponent');
+  if (sortContainer) {
+    try {
+      const res = await fetch('/sort.html');
+      const html = await res.text();
+      sortContainer.innerHTML += html;
+    } catch (e) {
+      console.error("Lỗi khi load component sắp xếp", e);
+    }
+  }
+}
+
+// Mở/Đóng menu sắp xếp
+function toggleSort(event) {
+  event.stopPropagation(); // Ngăn click lan ra ngoài
+  const menu = document.getElementById('sortDropdown');
+  if (menu) {
+    menu.classList.toggle('hidden');
+  }
+}
+
+// Tự động đóng menu khi click ra ngoài vùng lựa chọn
+document.addEventListener('click', (event) => {
+  const menu = document.getElementById('sortDropdown');
+  // Nếu menu đang mở và click bên ngoài menu + bên ngoài nút
+  if (menu && !menu.classList.contains('hidden')) {
+    menu.classList.add('hidden');
+  }
+});
+
+// Hàm áp dụng sắp xếp khi bấm nút "Lưu"
+function applySort() {
+  // Lấy danh sách các điều kiện được tick (thứ tự trên HTML đã chuẩn từ trên xuống)
+  const conditions = Array.from(document.querySelectorAll('.sort-condition:checked')).map(cb => cb.value);
+  const order = document.querySelector('input[name="sortOrder"]:checked').value;
+
+  if (conditions.length > 0) {
+    // Ghép các trường thành chuỗi, VD: "?sort=ma_hoc_sinh,ho_ten&order=ASC"
+    currentSortParams = `?sort=${conditions.join(',')}&order=${order}`;
+  } else {
+    currentSortParams = ""; // Reset nếu bỏ tick hết
+  }
+
+  // Đóng menu và load lại data
+  const menu = document.getElementById('sortDropdown');
+  if (menu) menu.classList.add('hidden');
+  loadStudents();
+}
+
+// --- SỬA LẠI HÀM loadStudents ---
+async function loadStudents() {
+  // Thêm currentSortParams vào URL để gửi lên server
+  const res = await fetch(`/students${currentSortParams}`);
+  students = await res.json();
+  currentPage = 1;
+  render();
+}
+
+// --- SỬA PHẦN KHỞI TẠO Ở CUỐI FILE ---
+if (window.location.pathname === "/") {
+  loadSortComponent().then(() => {
+    // Chỉ load danh sách học sinh sau khi đã chuẩn bị xong DOM
+    loadStudents();
+  });
+}
 async function loadStudents() {
   const res = await fetch("/students")
   students = await res.json()
