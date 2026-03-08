@@ -57,28 +57,12 @@ function applySort() {
   if (menu) menu.classList.add('hidden');
   loadStudents();
 }
-
-// --- SỬA LẠI HÀM loadStudents ---
 async function loadStudents() {
   // Thêm currentSortParams vào URL để gửi lên server
   const res = await fetch(`/students${currentSortParams}`);
   students = await res.json();
   currentPage = 1;
   render();
-}
-
-// --- SỬA PHẦN KHỞI TẠO Ở CUỐI FILE ---
-if (window.location.pathname === "/") {
-  loadSortComponent().then(() => {
-    // Chỉ load danh sách học sinh sau khi đã chuẩn bị xong DOM
-    loadStudents();
-  });
-}
-async function loadStudents() {
-  const res = await fetch("/students")
-  students = await res.json()
-  currentPage = 1
-  render()
 }
 
 function render() {
@@ -195,5 +179,8 @@ async function searchStudent() {
 }
 
 if (window.location.pathname === "/") {
-  loadStudents()
+  loadSortComponent().then(() => {
+    // Chỉ load danh sách học sinh sau khi đã chuẩn bị xong DOM
+    loadStudents();
+  });
 }
