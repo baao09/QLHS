@@ -60,22 +60,6 @@ CREATE TABLE IF NOT EXISTS students (
 });
 
 /* ===============================
-   GET ALL STUDENTS
-================================ */
-
-app.get("/students", (req, res) => {
-  db.query("SELECT * FROM students", (err, result) => {
-
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ message: "Lỗi server khi lấy danh sách học sinh!" });
-    }
-
-    res.json(result);
-  });
-});
-
-/* ===============================
    GET ALL STUDENTS (Hỗ trợ Sắp xếp)
 ================================ */
 app.get("/students", (req, res) => {
@@ -107,6 +91,31 @@ app.get("/students", (req, res) => {
     res.json(result);
   });
 });
+
+/* ===============================
+   GET 1 STUDENT
+================================ */
+
+app.get("/students/:ma", (req, res) => {
+
+  db.query(
+    "SELECT * FROM students WHERE ma_hoc_sinh = ?",
+    [req.params.ma],
+    (err, result) => {
+
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Lỗi server!" });
+      }
+
+      if (result.length === 0)
+        return res.status(404).json({ message: "Không tìm thấy học sinh!" });
+
+      res.json(result[0]);
+    }
+  );
+});
+
 /* ===============================
    ADD STUDENT
 ================================ */
