@@ -76,29 +76,37 @@ app.get("/students", (req, res) => {
 });
 
 /* ===============================
-   GET 1 STUDENT
+   GET ALL STUDENTS (Hỗ trợ Sắp xếp)
 ================================ */
+app.get("/students", (req, res) => {
+  let sql = "SELECT * FROM students";
+  
+  const { sort, order } = req.query;
 
-app.get("/students/:ma", (req, res) => {
+  if (sort) {
+    // Lọc kỹ các cột hợp lệ để chống SQL Injection
+    const allowedSorts = ["ma_hoc_sinh", "ho_ten", "ngay_sinh", "gioi_tinh", "lop"];
+    const sortFields = sort.split(',').filter(f => allowedSorts.includes(f));
 
-  db.query(
-    "SELECT * FROM students WHERE ma_hoc_sinh = ?",
-    [req.params.ma],
-    (err, result) => {
-
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ message: "Lỗi server!" });
-      }
-
-      if (result.length === 0)
-        return res.status(404).json({ message: "Không tìm thấy học sinh!" });
-
-      res.json(result[0]);
+    if (sortFields.length > 0) {
+      // Đảm bảo Order chỉ có thể là ASC hoặc DESC
+      const orderDir = order === 'DESC' ? 'DESC' : 'ASC';
+      
+      // Áp dụng hướng sắp xếp cho tất cả các cột được chọn
+      const orderClause = sortFields.map(field => `${field} ${orderDir}`).join(', ');
+      
+      sql += ` ORDER BY ${orderClause}`;
     }
-  );
-});
+  }
 
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Lỗi server khi lấy danh sách học sinh!" });
+    }
+    res.json(result);
+  });
+});
 /* ===============================
    ADD STUDENT
 ================================ */
