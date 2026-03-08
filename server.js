@@ -16,7 +16,8 @@ const db = mysql.createConnection({
   host: process.env.MYSQLHOST || "localhost",
   user: process.env.MYSQLUSER || "root",
   password: process.env.MYSQLPASSWORD || "",
-  database: process.env.MYSQLDATABASE || "qlhs"
+  database: process.env.MYSQLDATABASE || "qlhs",
+  port: process.env.MYSQLPORT || 3306
 });
 
 db.connect(err => {
@@ -26,6 +27,26 @@ db.connect(err => {
     console.log("Đã kết nối MySQL");
   }
 });
+db.query(`
+CREATE TABLE IF NOT EXISTS students (
+  ma_hoc_sinh VARCHAR(10) PRIMARY KEY,
+  ho_ten VARCHAR(100),
+  ngay_sinh DATE,
+  gioi_tinh VARCHAR(10),
+  lop VARCHAR(20),
+  email VARCHAR(100),
+  so_dien_thoai VARCHAR(20),
+  nien_khoa VARCHAR(20),
+  ghi_chu TEXT
+)
+`, (err) => {
+  if (err) {
+    console.error("Lỗi tạo bảng:", err);
+  } else {
+    console.log("Bảng students đã sẵn sàng");
+  }
+});
+
 
 /* ===============================
    GET ALL STUDENTS
