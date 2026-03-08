@@ -27,6 +27,7 @@ db.connect(err => {
     console.log("Đã kết nối MySQL");
   }
 });
+
 db.query(`
 CREATE TABLE IF NOT EXISTS students (
   ma_hoc_sinh VARCHAR(10) PRIMARY KEY,
@@ -54,30 +55,41 @@ CREATE TABLE IF NOT EXISTS students (
 
 app.get("/students", (req, res) => {
   db.query("SELECT * FROM students", (err, result) => {
-    if (err) return res.status(500).json(err);
+
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Lỗi server khi lấy danh sách học sinh!" });
+    }
+
     res.json(result);
   });
 });
+
 
 /* ===============================
    GET 1 STUDENT
 ================================ */
 
 app.get("/students/:ma", (req, res) => {
+
   db.query(
     "SELECT * FROM students WHERE ma_hoc_sinh = ?",
     [req.params.ma],
     (err, result) => {
 
-      if (err) return res.status(500).json(err);
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Lỗi server!" });
+      }
 
       if (result.length === 0)
-        return res.status(404).json({ message: "Không tìm thấy" });
+        return res.status(404).json({ message: "Không tìm thấy học sinh!" });
 
       res.json(result[0]);
     }
   );
 });
+
 
 /* ===============================
    ADD STUDENT
@@ -139,16 +151,20 @@ app.post("/students", (req, res) => {
     (err) => {
 
       if (err) {
+
+        console.error(err);
+
         if (err.code === "ER_DUP_ENTRY")
           return res.status(400).json({ message: "Mã học sinh đã tồn tại!" });
 
-        return res.status(500).json(err);
+        return res.status(500).json({ message: "Lỗi server khi thêm học sinh!" });
       }
 
       res.json({ message: "Thêm thành công!" });
     }
   );
 });
+
 
 /* ===============================
    UPDATE STUDENT
@@ -173,15 +189,6 @@ app.put("/students/:ma", (req, res) => {
   ) {
     return res.status(400).json({ message: "Không được để trống!" });
   }
-
-  if (!/^[0-9]{10}$/.test(so_dien_thoai))
-    return res.status(400).json({ message: "SĐT không hợp lệ!" });
-
-  if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email))
-    return res.status(400).json({ message: "Email không hợp lệ!" });
-
-  if (!/^\d{4}-\d{4}$/.test(nien_khoa))
-    return res.status(400).json({ message: "Niên khóa sai định dạng!" });
 
   const sql = `
   UPDATE students SET
@@ -211,15 +218,19 @@ app.put("/students/:ma", (req, res) => {
     ],
     (err, result) => {
 
-      if (err) return res.status(500).json(err);
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Lỗi server khi cập nhật!" });
+      }
 
       if (result.affectedRows === 0)
-        return res.status(404).json({ message: "Không tìm thấy" });
+        return res.status(404).json({ message: "Không tìm thấy học sinh!" });
 
       res.json({ message: "Cập nhật thành công!" });
     }
   );
 });
+
 
 /* ===============================
    DELETE STUDENT
@@ -232,15 +243,19 @@ app.delete("/students/:ma", (req, res) => {
     [req.params.ma],
     (err, result) => {
 
-      if (err) return res.status(500).json(err);
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Lỗi server khi xóa!" });
+      }
 
       if (result.affectedRows === 0)
-        return res.status(404).json({ message: "Không tìm thấy" });
+        return res.status(404).json({ message: "Không tìm thấy học sinh!" });
 
-      res.json({ message: "Xóa thành công" });
+      res.json({ message: "Xóa thành công!" });
     }
   );
 });
+
 
 /* ===============================
    SEARCH
@@ -263,12 +278,16 @@ app.get("/search", (req, res) => {
     [keyword, keyword, keyword, keyword],
     (err, result) => {
 
-      if (err) return res.status(500).json(err);
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Lỗi server khi tìm kiếm!" });
+      }
 
       res.json(result);
     }
   );
 });
+
 
 /* ===============================
    START SERVER
