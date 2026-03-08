@@ -1,54 +1,68 @@
 const express = require("express");
-const fs = require("fs");
+const mysql = require("mysql2");
 const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log("Server running on port " + PORT);
-});
-
 app.use(express.json());
 app.use(express.static("public"));
 
-const dataPath = path.join(__dirname, "data", "students.json");
+/* ===============================
+   KẾT NỐI DATABASE
+================================ */
 
-function readData() {
-  try {
-    const data = fs.readFileSync(dataPath, "utf8");
-    return JSON.parse(data);
-  } catch (err) {
-    return [];
+const db = mysql.createConnection({
+  host: process.env.MYSQLHOST || "localhost",
+  user: process.env.MYSQLUSER || "root",
+  password: process.env.MYSQLPASSWORD || "",
+  database: process.env.MYSQLDATABASE || "qlhs"
+});
+
+db.connect(err => {
+  if (err) {
+    console.error("Lỗi kết nối MySQL:", err);
+  } else {
+    console.log("Đã kết nối MySQL");
   }
-}
+});
 
-function writeData(data) {
-  fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-}
+/* ===============================
+   GET ALL STUDENTS
+================================ */
 
-// GET ALL
 app.get("/students", (req, res) => {
-  const students = readData();
-  res.json(students);
+  db.query("SELECT * FROM students", (err, result) => {
+    if (err) return res.status(500).json(err);
+    res.json(result);
+  });
 });
 
-// GET 1 student
+/* ===============================
+   GET 1 STUDENT
+================================ */
+
 app.get("/students/:ma", (req, res) => {
-  const students = readData();
-  const student = students.find(
-    s => s.ma_hoc_sinh === req.params.ma
+  db.query(
+    "SELECT * FROM students WHERE ma_hoc_sinh = ?",
+    [req.params.ma],
+    (err, result) => {
+
+      if (err) return res.status(500).json(err);
+
+      if (result.length === 0)
+        return res.status(404).json({ message: "Không tìm thấy" });
+
+      res.json(result[0]);
+    }
   );
-
-  if (!student)
-    return res.status(404).json({ message: "Không tìm thấy" });
-
-  res.json(student);
 });
 
-// ADD
+/* ===============================
+   ADD STUDENT
+================================ */
+
 app.post("/students", (req, res) => {
-  const students = readData();
 
   const {
     ma_hoc_sinh,
@@ -62,7 +76,6 @@ app.post("/students", (req, res) => {
     ghi_chu
   } = req.body;
 
-  // 1️ Không được để trống (trừ ghi_chu)
   if (
     !ma_hoc_sinh || !ho_ten || !ngay_sinh ||
     !gioi_tinh || !lop || !email ||
@@ -71,46 +84,56 @@ app.post("/students", (req, res) => {
     return res.status(400).json({ message: "Không được để trống thông tin!" });
   }
 
-  // 2️ Không trùng mã
-  if (students.find(s => s.ma_hoc_sinh === ma_hoc_sinh)) {
-    return res.status(400).json({ message: "Mã học sinh đã tồn tại!" });
-  }
-
-  // 3️ SĐT 10 số
-  if (!/^[0-9]{10}$/.test(so_dien_thoai)) {
+  if (!/^[0-9]{10}$/.test(so_dien_thoai))
     return res.status(400).json({ message: "SĐT phải đủ 10 số!" });
-  }
 
-  // 4️ Gmail
-  if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email)) {
+  if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email))
     return res.status(400).json({ message: "Email phải là Gmail hợp lệ!" });
-  }
 
-  // 5️ Niên khóa
-  if (!/^\d{4}-\d{4}$/.test(nien_khoa)) {
+  if (!/^\d{4}-\d{4}$/.test(nien_khoa))
     return res.status(400).json({ message: "Niên khóa phải dạng 2023-2026!" });
-  }
 
-  // 6️ Giới tính
-  if (!["Nam", "Nữ"].includes(gioi_tinh)) {
+  if (!["Nam", "Nữ"].includes(gioi_tinh))
     return res.status(400).json({ message: "Giới tính không hợp lệ!" });
-  }
 
-  students.push(req.body);
-  writeData(students);
+  const sql = `
+  INSERT INTO students
+  (ma_hoc_sinh, ho_ten, ngay_sinh, gioi_tinh, lop, email, so_dien_thoai, nien_khoa, ghi_chu)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
 
-  res.json({ message: "Thêm thành công!" });
+  db.query(
+    sql,
+    [
+      ma_hoc_sinh,
+      ho_ten,
+      ngay_sinh,
+      gioi_tinh,
+      lop,
+      email,
+      so_dien_thoai,
+      nien_khoa,
+      ghi_chu
+    ],
+    (err) => {
+
+      if (err) {
+        if (err.code === "ER_DUP_ENTRY")
+          return res.status(400).json({ message: "Mã học sinh đã tồn tại!" });
+
+        return res.status(500).json(err);
+      }
+
+      res.json({ message: "Thêm thành công!" });
+    }
+  );
 });
 
-// UPDATE
-app.put("/students/:ma", (req, res) => {
-  const students = readData();
-  const index = students.findIndex(
-    s => s.ma_hoc_sinh === req.params.ma
-  );
+/* ===============================
+   UPDATE STUDENT
+================================ */
 
-  if (index === -1)
-    return res.status(404).json({ message: "Không tìm thấy" });
+app.put("/students/:ma", (req, res) => {
 
   const {
     ho_ten,
@@ -119,7 +142,8 @@ app.put("/students/:ma", (req, res) => {
     lop,
     email,
     so_dien_thoai,
-    nien_khoa
+    nien_khoa,
+    ghi_chu
   } = req.body;
 
   if (
@@ -138,38 +162,97 @@ app.put("/students/:ma", (req, res) => {
   if (!/^\d{4}-\d{4}$/.test(nien_khoa))
     return res.status(400).json({ message: "Niên khóa sai định dạng!" });
 
-  students[index] = { ...students[index], ...req.body };
+  const sql = `
+  UPDATE students SET
+  ho_ten = ?,
+  ngay_sinh = ?,
+  gioi_tinh = ?,
+  lop = ?,
+  email = ?,
+  so_dien_thoai = ?,
+  nien_khoa = ?,
+  ghi_chu = ?
+  WHERE ma_hoc_sinh = ?
+  `;
 
-  writeData(students);
+  db.query(
+    sql,
+    [
+      ho_ten,
+      ngay_sinh,
+      gioi_tinh,
+      lop,
+      email,
+      so_dien_thoai,
+      nien_khoa,
+      ghi_chu,
+      req.params.ma
+    ],
+    (err, result) => {
 
-  res.json({ message: "Cập nhật thành công!" });
+      if (err) return res.status(500).json(err);
+
+      if (result.affectedRows === 0)
+        return res.status(404).json({ message: "Không tìm thấy" });
+
+      res.json({ message: "Cập nhật thành công!" });
+    }
+  );
 });
 
-// DELETE
+/* ===============================
+   DELETE STUDENT
+================================ */
+
 app.delete("/students/:ma", (req, res) => {
-  let students = readData();
-  students = students.filter(
-    s => s.ma_hoc_sinh !== req.params.ma
+
+  db.query(
+    "DELETE FROM students WHERE ma_hoc_sinh = ?",
+    [req.params.ma],
+    (err, result) => {
+
+      if (err) return res.status(500).json(err);
+
+      if (result.affectedRows === 0)
+        return res.status(404).json({ message: "Không tìm thấy" });
+
+      res.json({ message: "Xóa thành công" });
+    }
   );
-  writeData(students);
-  res.json({ message: "Xóa thành công" });
 });
 
-// SEARCH
+/* ===============================
+   SEARCH
+================================ */
+
 app.get("/search", (req, res) => {
-  const keyword = req.query.q.toLowerCase();
-  const students = readData();
 
-  const result = students.filter(s =>
-    s.ma_hoc_sinh.toLowerCase().includes(keyword) ||
-    s.ho_ten.toLowerCase().includes(keyword) ||
-    s.lop.toLowerCase().includes(keyword) ||
-    s.email.toLowerCase().includes(keyword)
+  const keyword = "%" + req.query.q + "%";
+
+  const sql = `
+  SELECT * FROM students
+  WHERE ma_hoc_sinh LIKE ?
+  OR ho_ten LIKE ?
+  OR lop LIKE ?
+  OR email LIKE ?
+  `;
+
+  db.query(
+    sql,
+    [keyword, keyword, keyword, keyword],
+    (err, result) => {
+
+      if (err) return res.status(500).json(err);
+
+      res.json(result);
+    }
   );
-
-  res.json(result);
 });
+
+/* ===============================
+   START SERVER
+================================ */
 
 app.listen(PORT, () => {
-  console.log("Server chạy tại http://localhost:" + PORT);
+  console.log("Server chạy tại port " + PORT);
 });
