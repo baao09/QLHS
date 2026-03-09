@@ -3,9 +3,9 @@
 **PHIÊN BẢN:** DÀNH CHO QUẢN LÍ HỌC SINH SINH VIÊN 
 
 ## NHÓM THỰC HIỆN 
-1. THÁI NGUYỄN NGỌC BẢO 01 
-2. TRẦN NGUYỄN KHÁNH HÂN 08 
-3. LÊ THIÊN LONG 14 
+1. THÁI NGUYỄN NGỌC BẢO - 01 
+2. TRẦN NGUYỄN KHÁNH HÂN - 08 
+3. LÊ THIÊN LONG - 14 
 
 ---
 
