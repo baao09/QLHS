@@ -108,3 +108,158 @@ db.getConnection((err, connection) => {
 });
 ```
 #### Chức năng
+- Kiểm tra server có kết nối được MySQL hay không
+- Nếu lỗi → in ra log
+- Nếu thành công → trả connection về pool
+
+#### Vì sao quan trọng
+Nếu không kết nối được database thì toàn bộ hệ thống sẽ không hoạt động.
+
+---
+
+### 4.2 API lấy danh sách học sinh
+
+```javascript
+app.get("/students", (req, res) => {
+  let sql = "SELECT * FROM students";
+
+  const { sort, order } = req.query;
+
+  if (sort) {
+    const allowedSorts = ["ma_hoc_sinh", "ho_ten", "ngay_sinh", "gioi_tinh", "lop"];
+    const sortFields = sort.split(',').filter(f => allowedSorts.includes(f));
+
+    if (sortFields.length > 0) {
+      const orderDir = order === 'DESC' ? 'DESC' : 'ASC';
+      sql += ` ORDER BY ${sortFields.join(', ')} ${orderDir}`;
+    }
+  }
+
+  db.query(sql, (err, result) => {
+    res.json(result);
+  });
+});
+Chức năng
+
+Lấy toàn bộ danh sách học sinh từ database
+
+Cho phép sắp xếp dữ liệu theo nhiều cột khác nhau
+
+4.3 API lấy thông tin 1 học sinh
+app.get("/students/:ma", (req, res) => {
+  db.query(
+    "SELECT * FROM students WHERE ma_hoc_sinh = ?",
+    [req.params.ma],
+    (err, result) => {
+
+      if (result.length === 0)
+        return res.status(404).json({ message: "Không tìm thấy học sinh!" });
+
+      res.json(result[0]);
+    }
+  );
+});
+Chức năng
+
+Lấy thông tin chi tiết của một học sinh dựa trên mã học sinh
+
+4.4 API thêm học sinh
+app.post("/students", (req, res) => {
+
+  const {
+    ma_hoc_sinh,
+    ho_ten,
+    ngay_sinh,
+    gioi_tinh,
+    lop,
+    email,
+    so_dien_thoai,
+    nien_khoa,
+    ghi_chu
+  } = req.body;
+
+  const sql = `
+  INSERT INTO students
+  (ma_hoc_sinh, ho_ten, ngay_sinh, gioi_tinh, lop, email, so_dien_thoai, nien_khoa, ghi_chu)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(sql,[...],(err)=>{
+    res.json({ message: "Thêm thành công!" });
+  });
+
+});
+Chức năng
+
+Thêm một học sinh mới vào cơ sở dữ liệu
+
+4.5 API cập nhật học sinh
+app.put("/students/:ma", (req, res) => {
+
+  const sql = `
+  UPDATE students SET
+  ho_ten = ?,
+  ngay_sinh = ?,
+  gioi_tinh = ?,
+  lop = ?,
+  email = ?,
+  so_dien_thoai = ?,
+  nien_khoa = ?,
+  ghi_chu = ?
+  WHERE ma_hoc_sinh = ?
+  `;
+
+  db.query(sql,[...],(err,result)=>{
+    res.json({ message: "Cập nhật thành công!" });
+  });
+
+});
+Chức năng
+
+Cập nhật thông tin của một học sinh đã tồn tại trong hệ thống
+
+4.6 API xóa học sinh
+app.delete("/students/:ma", (req, res) => {
+
+  db.query(
+    "DELETE FROM students WHERE ma_hoc_sinh = ?",
+    [req.params.ma],
+    (err, result) => {
+      res.json({ message: "Xóa thành công!" });
+    }
+  );
+
+});
+Chức năng
+
+Xóa một học sinh khỏi cơ sở dữ liệu dựa trên mã học sinh
+
+4.7 API tìm kiếm học sinh
+app.get("/search", (req, res) => {
+
+  const keyword = "%" + req.query.q + "%";
+
+  const sql = `
+  SELECT * FROM students
+  WHERE ma_hoc_sinh LIKE ?
+  OR ho_ten LIKE ?
+  OR lop LIKE ?
+  OR email LIKE ?
+  `;
+
+  db.query(sql,[keyword,keyword,keyword,keyword],(err,result)=>{
+    res.json(result);
+  });
+
+});
+Chức năng
+
+Cho phép tìm kiếm học sinh theo nhiều trường thông tin khác nhau:
+
+Mã học sinh
+
+Họ tên
+
+Lớp
+
+Email
