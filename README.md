@@ -1,8 +1,8 @@
-#CHỦ ĐỀ: TRANG WEB NHẬP, SỬA VÀ TÌM KIẾM DỮ LIỆU 
+# CHỦ ĐỀ: TRANG WEB NHẬP, SỬA VÀ TÌM KIẾM DỮ LIỆU 
 
 **PHIÊN BẢN:** DÀNH CHO QUẢN LÍ HỌC SINH SINH VIÊN 
 
-##NHÓM THỰC HIỆN 
+## NHÓM THỰC HIỆN 
 1. THÁI NGUYỄN NGỌC BẢO 01 
 2. TRẦN NGUYỄN KHÁNH HÂN 08 
 3. LÊ THIÊN LONG 14 
