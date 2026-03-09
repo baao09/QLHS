@@ -50,8 +50,13 @@ Trước khi sử dụng website cần chuẩn bị:
 - **Bước 3: Lưu dữ liệu** - Nhấn nút "Thêm dữ liệu" để lưu thông tin vào cơ sở dữ liệu SQL.
   ![Thêm và lưu dữ liệu](images/Buoc3.jpg)
 - **Bước 4: Tìm kiếm dữ liệu** - Nhập từ khóa vào ô tìm kiếm và nhấn nút "Tìm kiếm" để xem dữ liệu cần tìm.
+  ![Chọn nút tìm kiếm](images/Buoc41.jpg)
+  ![Nhập từ khóa](images/Buoc42.jpg)
 - **Bước 5: Sắp xếp dữ liệu** - Người dùng có thể sắp xếp dữ liệu bằng nhấn nút "Sắp xếp" và tùy chọn lọc theo ý muốn.
+  ![Chọn nút sắp xếp](images/Buoc51.jpg)
+  ![Chọn điều kiện và cách thức](images/Buoc52.jpg)
 - **Bước 6: Xóa và sửa dữ liệu** - Chọn và nút "Sửa" hoặc "Xóa" để có thể cập nhật hoặc xóa 1 dữ liệu.
+  ![Sửa và xóa dữ liệu](images/Buoc6.jpg)
 
 ---
 
