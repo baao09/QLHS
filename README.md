@@ -1,0 +1,97 @@
+# [cite_start]CHỦ ĐỀ: TRANG WEB NHẬP, SỬA VÀ TÌM KIẾM DỮ LIỆU 
+
+[cite_start]**PHIÊN BẢN:** DÀNH CHO QUẢN LÝ HỌC SINH SINH VIÊN 
+
+## NHÓM THỰC HIỆN
+1. [cite_start]THÁI NGUYỄN NGỌC BẢO 01 
+2. [cite_start]TRẦN NGUYỄN KHÁNH HÂN 08 
+3. [cite_start]LÊ THIÊN LONG 14 
+
+---
+
+## [cite_start]1. Giới thiệu sản phẩm 
+
+### 1.1 Tên sản phẩm
+[cite_start]**Website Quản Lý Dữ Liệu Sử Dụng SQL Để Quản Lí Danh Sách Học Sinh Sinh Viên** 
+
+### 1.2 Mô tả sản phẩm
+[cite_start]Trong thời đại công nghệ thông tin hiện nay, việc lưu trữ và quản lý dữ liệu một cách hiệu quả là rất quan trọng. [cite_start]Nhằm giúp người dùng có thể dễ dàng quản lý dữ liệu, nhóm đã xây dựng một website quản lý dữ liệu đơn giản có liên kết với cơ sở dữ liệu SQL. [cite_start]Thích hợp sử dụng cho môi trường học tập hay quản lí học sinh, giúp nâng cao hiệu quả quản lí và công việc.
+
+Website cho phép người dùng thực hiện các thao tác cơ bản với dữ liệu như:
+- [cite_start]Thêm dữ liệu mới vào hệ thống 
+- [cite_start]Tìm kiếm dữ liệu đã lưu 
+- [cite_start]Xóa dữ liệu không còn cần thiết 
+
+[cite_start]Thông qua việc kết nối với cơ sở dữ liệu SQL, tất cả thông tin sẽ được lưu trữ một cách có hệ thống và có thể truy xuất nhanh chóng khi cần.
+
+### 1.3 Mục đích của sản phẩm
+Sản phẩm được tạo ra với các mục đích sau:
+- [cite_start]Giúp người dùng quản lý dữ liệu một cách dễ dàng và thuận tiện.
+- [cite_start]Minh họa cách kết nối website với cơ sở dữ liệu SQL.
+- [cite_start]Áp dụng kiến thức lập trình và cơ sở dữ liệu vào thực tế.
+- [cite_start]Giúp học sinh hiểu rõ hơn về cách hoạt động của hệ thống quản lý dữ liệu.
+
+---
+
+## [cite_start]2. Hướng dẫn sử dụng 
+
+### 2.1 Chuẩn bị
+Trước khi sử dụng website cần chuẩn bị:
+- [cite_start]Máy tính có cài đặt trình duyệt web 
+- [cite_start]Cài đặt hệ quản trị cơ sở dữ liệu MySQL / SQL 
+- [cite_start]Chạy chương trình server của website 
+
+### 2.2 Các bước sử dụng
+- [cite_start]**Bước 1: Mở website** - Người dùng mở trình duyệt và truy cập vào trang web của hệ thống.
+- [cite_start]**Bước 2: Nhập dữ liệu** - Người dùng điền thông tin vào các ô thêm trên website.
+- [cite_start]**Bước 3: Lưu dữ liệu** - Nhấn nút "Thêm dữ liệu" để lưu thông tin vào cơ sở dữ liệu SQL.
+- [cite_start]**Bước 4: Tìm kiếm dữ liệu** - Nhập từ khóa vào ô tìm kiếm và nhấn nút "Tìm kiếm" để xem dữ liệu cần tìm.
+- [cite_start]**Bước 5: Sắp xếp dữ liệu** - Người dùng có thể sắp xếp dữ liệu bằng cách nhấn nút "Sắp xếp" và tùy chọn lọc theo ý muốn.
+- [cite_start]**Bước 6: Xóa và sửa dữ liệu** - Chọn nút "Sửa" hoặc "Xóa" để có thể cập nhật hoặc xóa 1 dữ liệu.
+
+*(Lưu ý: Bạn có thể chèn hình ảnh giao diện website hoặc các bước thao tác vào đây bằng cú pháp: `![Mô tả ảnh](Đường_dẫn_ảnh)`)*
+
+---
+
+## [cite_start]3. Các công cụ AI đã dùng 
+
+### 3.1 Công cụ AI
+- [cite_start]ChatGPT 
+- [cite_start]Google Gemini 
+- [cite_start]Grok 
+
+### 3.2 Prompt đã sử dụng
+Các câu lệnh (prompt) chính đã được nhóm sử dụng để gỡ lỗi và phát triển dự án:
+- [cite_start]*"hãy giúp tôi tạo một web hiển thị thông tin học sinh, thêm, sửa xóa và tìm kiếm theo các từ khóa nhất định và lưu trữ dữ liệu trong file ghi đọc xóa của visual và design một chút bằng tailwind và code bằng node js"* 
+- [cite_start]*"Tôi đang có một đống các file để làm web quản lý học sinh nhưng tôi không biết nên đăng lên git hub như thế nào cho nó chạy nữa."* 
+- [cite_start]*"hồi nảy tôi lỡ quên thêm .gigtinore xong rồi nó đẩy cả thư mục node_module lên luôn rồi giờ làm sao"* 
+- *"tôi muốn sài bản free mà nó cũng add card vậy"* 
+- *"vậy làm sao để deploy trên rail way"* 
+- *"làm sao để lấy link"* 
+- *"vậy giờ tôi phải push lại lên github hả"* 
+- *"vậy giờ hãy nêu từng bước một"* 
+- *"vậy là tôi mở MySQL lên rồi lưu file sql vào project luôn à"* 
+- *"vậy tôi có cần nhất thiết phải tải sql không hay chỉ cần dùng mysql trên railway là được"* 
+- *"nhưng đây là file json của tôi"* 
+- *"bạn hãy sửa code trên file server của tôi"* 
+- *"terminal sql đâu"* 
+- *"mở console kểu gì"* 
+- *"vậy là tôi phải tạo thủ công sao"* 
+- *"vậy hãy thêm đoạn này vào file code sever.js hồi nảy tôi gửi bạn"* 
+- *"ngày tháng theo kiểu yyyy-mm-dd trong sql thì khai báo là date hay short date"* 
+- *"nhưng sao tôi khai báo date mà trong này lại hiện một đống số sau ngày vậy"* 
+
+**LINK các cuộc hội thoại tham khảo:**
+- <https://gemini.google.com/share/cf12108aa824> 
+- <https://gemini.google.com/share/22eabc5973d2> 
+- <https://chatgpt.com/share/69ae74e7-08d0-8008-a222-d935b44c7902> 
+- <https://chatgpt.com/share/69ae750f-fbbc-8008-ad5d-73a3a305f5fc> 
+- <https://chatgpt.com/share/69aed66b-2918-8003-b6ad-087b38132119> 
+
+---
+
+## 4. Các hàm quan trọng ở Backend 
+
+### 4.1 Kết nối database 
+
+*(Bạn có thể bổ sung đoạn mã kết nối cơ sở dữ liệu `server.js` của mình vào đây)*
