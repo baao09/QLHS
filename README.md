@@ -48,12 +48,10 @@ Trước khi sử dụng website cần chuẩn bị:
 - **Bước 1: Mở website** - Người dùng mở trình duyệt và truy cập vào trang web của hệ thống.
 - **Bước 2: Nhập dữ liệu** - Người dùng điền thông tin vào các ô thêm trên website.
 - **Bước 3: Lưu dữ liệu** - Nhấn nút "Thêm dữ liệu" để lưu thông tin vào cơ sở dữ liệu SQL.
+  ![Thêm và lưu dữ liệu](images/Buoc3.jpg)
 - **Bước 4: Tìm kiếm dữ liệu** - Nhập từ khóa vào ô tìm kiếm và nhấn nút "Tìm kiếm" để xem dữ liệu cần tìm.
 - **Bước 5: Sắp xếp dữ liệu** - Người dùng có thể sắp xếp dữ liệu bằng nhấn nút "Sắp xếp" và tùy chọn lọc theo ý muốn.
 - **Bước 6: Xóa và sửa dữ liệu** - Chọn và nút "Sửa" hoặc "Xóa" để có thể cập nhật hoặc xóa 1 dữ liệu.
-
-*(Bạn có thể chèn hình ảnh minh họa cho các bước sử dụng tại đây)*
-`![Ảnh minh họa sử dụng](đường_dẫn_đến_ảnh_của_bạn)`
 
 ---
 
