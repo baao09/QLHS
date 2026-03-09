@@ -106,5 +106,5 @@ db.getConnection((err, connection) => {
     connection.release();
   }
 });
-'''
-###
+```
+#### Chức năng
