@@ -95,10 +95,11 @@ Các câu lệnh (prompt) chính đã được nhóm sử dụng để gỡ lỗ
 - <https://chatgpt.com/share/69aed66b-2918-8003-b6ad-087b38132119> 
 
 ---
-
+## 4. Sơ lược về các thành phần của web
+![Sơ lược về các thành phần](images/TongQuat.jpg)
 ---
 
-## 4. Backend API
+## 5. Backend API
 
 Phần Backend của hệ thống được xây dựng bằng **Node.js + Express** và kết nối với **MySQL** để thực hiện các thao tác quản lý dữ liệu học sinh.
 
